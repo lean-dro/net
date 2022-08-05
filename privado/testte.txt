@@ -1,0 +1,73 @@
+            <table class=" table table-responsive">
+                <thead>
+                    <th class="text-white">Tarefa</th>
+                    <th class="text-white">Descrição</th>
+                    <th class="text-white">Prazo</th>
+                    <th class="text-white">Dias Restantes</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $i = 0;
+                    $tarefaHome = 0;
+                    foreach ($tarefasUsuarioPend as $linha) {
+                        $tarefaHome = 1 + $i;
+                    ?>
+                        <tr>
+                            <td class="text-white">
+                                <?php echo $linha['tituloTarefa'] ?>
+                            </td>
+                            <td class="text-white">
+
+
+
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $tarefaHome ?>">
+                                    Abrir
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal-<?php echo $tarefaHome ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-dark" id="exampleModalLabel"> <?php echo $linha['tituloTarefa'] ?> </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-dark">
+                                                    <?php echo $linha['descricaoTarefa'] ?>
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </td>
+                            <td class="text-white">
+                                <?php echo $linha['nomeCategoria'] ?>
+                            </td>
+                            <td class="text-white">
+                                <?php echo $linha['dataLimite'] ?>
+                            </td>
+                            <td class="text-success text-decoration-none">
+                                <a class="text-success" href="../src/crud/tarefa/concluir-tarefa.php?tab=home&id=<?php echo $linha['idTarefa'] ?>"><i class="fa-solid fa-check"></i></a>
+                            </td>
+                            <td class="text-white">
+                                <?php
+                                $dias = $linha['diasRestantes'];
+                                if ($dias < 0) {
+                                    echo "Atrasada em " . abs($dias) . " dias";
+                                } else {
+                                    echo "Restam " . $dias . " dias";
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    <?php $i++;
+                    } ?>
+                </tbody>
+            </table>
