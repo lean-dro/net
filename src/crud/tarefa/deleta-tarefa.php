@@ -6,4 +6,4 @@ $tarefa = new Tarefa();
 $tarefa->setIdtarefa($id);
 $tarefa->delete($tarefa);
 
-header("location: ../../../privado/tarefas.php");
+header("location: ../../../privado/tarefas.php?tab=gerenciar");

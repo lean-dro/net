@@ -19,4 +19,4 @@ if ($id > 0) {
 
 
 
-header("location: ../../../privado/tarefas.php");
+header("location: ../../../privado/tarefas.php?tab=gerenciar");
