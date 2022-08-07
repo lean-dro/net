@@ -7,8 +7,11 @@ include_once("sentinela.php");
 <div class="tab-content w-100" id="v-pills-tabContent">
     <!-- Tarefas -->
     <div class="tab-pane fade <?php echo $homeDiv ?>" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+        <h1 class="display-4 fw-bolder text-center">Tarefas Pendentes</h1>
+        <h3 class="fw-bolder text-center">Não exqueça!</h3>
 
-        <ul class="list-group mt-5 w-50 mx-auto border border-dark">
+
+        <ul class="list-group mt-3 w-50 mx-auto border border-dark">
             <?php
             $i = 0;
             $tarefaHome = 0;
@@ -16,8 +19,8 @@ include_once("sentinela.php");
                 $tarefaHome = 1 + $i;
             ?>
 
-                <li class=" list-group-item ">
-                    <div class="row d-flex align-items-baseline">
+                <li class=" list-group-item  ">
+                    <div style="height: 100% !important;" class="row d-flex align-items-baseline">
                         <div class="col-3">
                             <?php echo $linha['tituloTarefa'] ?>
                         </div>
@@ -50,7 +53,7 @@ include_once("sentinela.php");
                             <?php echo $linha['dataLimite'] ?>
                         </div>
                         <div class="col-auto">
-                            <a class="text-success fw-4" href="../src/crud/tarefa/concluir-tarefa.php?tab=home&id=<?php echo $linha['idTarefa'] ?>">
+                            <a class="rounded-5 text-decoration-none btn btn-outline-success btn-sm concluir  fw-4" href="../src/crud/tarefa/concluir-tarefa.php?tab=home&id=<?php echo $linha['idTarefa'] ?>">
                                 <i class="fa-solid fa-check"></i>
                             </a>
                         </div>
@@ -65,9 +68,9 @@ include_once("sentinela.php");
 
     <!-- Gerenciar -->
     <div class="tab-pane fade <?php echo $gerenciarDiv ?> " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-        <div class="container row">
+        <div class="container d-flex align-items-baseline row">
             <!-- Gerenciar categorias -->
-            <div class="bg-dark p-5 position-sticky col-3 ms-5 pt-2 pb-2 mb-5 mt-5 rounded  ">
+            <div class="bg-dark p-5  col-3 ms-5 pt-2 pb-2 mb-5 mt-3 rounded  ">
                 <table class="table table-dark table-responsive">
                     <thead>
                         <th>
@@ -116,7 +119,7 @@ include_once("sentinela.php");
 
             <!-- Gerenciar tarefas -->
 
-            <div class=" bg-dark p-5 col-8 ms-5 pt-2 pb-2 mt-5 mb-3 rounded">
+            <div class=" bg-dark p-5 col-8 ms-5 pt-2 pb-2 mt-3 mb-3 rounded">
                 <table class="table table-responsive">
                     <thead>
                         <th class="text-white">
@@ -180,16 +183,19 @@ include_once("sentinela.php");
                                     <?php echo $linha['dataLimite'] ?>
                                 </td>
                                 <td class="text-white">
-                                    <?php
-                                    $status = $linha['statusTarefa'];
-                                    if ($status == 1) { ?>
-                                        <i class="fa-solid fa-check"></i>
-                                    <?php
-                                    } else { ?>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    <?php
-                                    }
-                                    ?>
+                                   
+                                        <?php
+                                        $status = $linha['statusTarefa'];
+                                        if ($status == 1) { ?>
+                                            <i class="fa-solid fa-check btn btn-light disabled btn-sm rounded-5"></i>
+                                        <?php
+                                        } else { ?>
+                                            <i class="fa-solid fa-xmark btn btn-light disabled btn-sm rounded-5"></i>
+                                        <?php
+                                        }
+                                        ?>
+                                    
+
                                 </td>
                                 <td>
                                     <?php
