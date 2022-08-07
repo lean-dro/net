@@ -112,19 +112,13 @@ class Tarefa
         $lista = $resultado->fetchAll();
         return $lista;
     }
-    public function listarQtdConcluido($id){
-        $conexao = Conexao::conectar();
-        $query = "SELECT COUNT(idTarefa) FROM tbtarefa WHERE statusLogin = 1 AND idUsuario =".$id;
-        $resultado = $conexao->query($query);
-        $lista = $resultado->fetchColumn('count');
-        return $lista;
-    }
-    public function listarQtdPendente($id)
+
+    public function listarQtdConcluidasPendentesPorMes($id)
     {
         $conexao = Conexao::conectar();
-        $query = "SELECT COUNT(idTarefa) as 'count' FROM tbtarefa WHERE statusLogin = 0 AND idUsuario =".$id;
+        $query = "select count(case when statusTarefa = 0 then 1 else null end) as pendentes, count(case when statusTarefa = 1 then 1 else null end) as finalizadas, DATE_FORMAT(dataLimite, '%m/%y') as mes FROM tbtarefa WHERE idUsuario = ".$id." GROUP BY mes";
         $resultado = $conexao->query($query);
-        $lista = $resultado->fetchColumn('count');
+        $lista = $resultado->fetchAll();
         return $lista;
     }
     public function listarPrivado($id){
