@@ -29,7 +29,7 @@ switch ($tab) {
         $desempenho  = " active";
         $desempenhoDiv = "show active";
         break;
-    case '':
+    case 'config':
         $config  = " active";
         $configDiv = "show active";
         break;
